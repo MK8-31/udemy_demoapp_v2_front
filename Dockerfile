@@ -16,6 +16,16 @@ ENV HOME=/${WORKDIR} \
 
 WORKDIR ${HOME}
 
+# コンテナにパッケージをインストール
+COPY package*.json ./
+RUN yarn install
+
+COPY . ./
+
+# 本番環境にアプリを構築
+RUN yarn run build
+# ここまで
+
 # EXPOSE ${CONTAINER_PORT}
 
 
